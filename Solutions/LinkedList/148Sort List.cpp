@@ -46,12 +46,6 @@ void freelistNode(ListNode *head){
 
 }
 
-
-
-
-
-
-
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
@@ -61,8 +55,6 @@ public:
                 return head;
             ListNode* begin = head;
             ListNode* end = head;
-
-
             while(end->next){
                 end = end->next;
             }
@@ -72,7 +64,6 @@ public:
             return res[0];
     }
     vector<ListNode *> sortListPartion(ListNode* begin,ListNode* end){
-
             vector<ListNode *> res;
             //no node
             if(begin == NULL || end == NULL)
@@ -83,7 +74,6 @@ public:
                 res.push_back(begin);
                 return res;
             }
-
             //two nodes
             if(begin->next == end){
                 int bval = begin->val;
@@ -118,10 +108,7 @@ public:
                     q = q->next;
                     q ->next = 0;
                 }
-
             }
-
-
 
             int bval = begin->val;
             if(bval <= midval){
@@ -138,25 +125,19 @@ public:
             }
 
             ListNode* begin1 = h1->next;
-//            ListNode* end1 = p;
             ListNode* begin2 = h2->next;
-//            ListNode* end2 = q;
 
             h1->next = 0;
             h2->next = 0;
             delete h1;
             delete h2;
-
-
 //            //left
             vector<ListNode*> left = sortListPartion(begin1,p);
-
             if(!left.empty()){
                 begin = left[0];
                 left[1]->next = mid;
             }else
                 begin = mid;
-
             //right
             vector<ListNode*> right = sortListPartion(begin2,q);
             if(!right.empty()){
