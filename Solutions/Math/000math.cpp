@@ -5,6 +5,7 @@
 #include<algorithm>
 #include<cstring>
 #include<cmath>
+#include<cstdio>
 
 using namespace std;
 
@@ -25,5 +26,7 @@ class Solution {
 
 int main(){
         Solution s;
+
+        return 0;
 
 }
