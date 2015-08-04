@@ -4,6 +4,9 @@
 #include<iterator>
 #include<algorithm>
 #include<cstring>
+#include<cstdio>
+#include <stack>          // std::stack
+#include <deque>
 
 using namespace std;
 
