@@ -6,7 +6,7 @@
 #include<cstring>
 #include<cstdio>
 #include <stack>          // std::stack
-#include <deque>
+#include <queue>
 
 using namespace std;
 
