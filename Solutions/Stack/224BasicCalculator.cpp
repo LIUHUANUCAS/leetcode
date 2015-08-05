@@ -43,17 +43,13 @@ class Solution {
 
        public:
            string trim(string str){
-               if(str.size() == 0)
-                return "";
-                stringstream sst;
+                if(str.size() == 0)
+                    return "";
                 string s="";
-                for(auto& e:str){
+                for(auto& e:str)
                     if(e!= ' ')
-                        sst<<e;
-                }
-
-                return sst.str();
-
+                        s+=e;
+                return s;
            }
            vector<string> getNumberOperator(string str){
                 string sst1="";
@@ -61,26 +57,31 @@ class Solution {
                 if(str.size() == 0)
                     return vecs;
                 string s = trim(str);
+                size_t i=0;
+                while(s[i] == '('){
+                    operate.push("(");
+                    i++;
+                }
 
-                sst1+=s[0];
-                for(size_t i = 1;i<s.size();++i){
-                    char e = s[i];
+
+                sst1+=s[i];
+                for(size_t j = i+1;j<s.size();++j){
+                    char e = s[j];
 
                     bool flag = (e == '+' || e == '-' || e == '(' || e == ')') ;
                     if(flag){
-                        vecs.push_back(sst1);
+                        if(sst1 != "")
+                            vecs.push_back(sst1);
                         sst1="";
-                        char tmp[2]="";
-                        tmp[0] = e;
-                        tmp[1]='\0';
-                        vecs.push_back(string(tmp));
+                        string tmps;
+                        tmps+=e;
+                        vecs.push_back(tmps);
                     }
                     else
                         sst1+=e;
                 }
                 if(sst1 != "")
-                vecs.push_back(sst1);
-
+                    vecs.push_back(sst1);
                 return vecs;
            }
 
@@ -90,9 +91,8 @@ class Solution {
                 stringstream sst;
                 sst<<s[0];
                 vector<string> svec= getNumberOperator(s);
-                copy(svec.begin(),svec.end(),ostream_iterator<string>(cout,""));
+
                 for(auto&e:svec){
-                    cout<<"=============e="<<e<<endl;
                     bool flag = (e == "+" || e == "-" || e == "(");
                     if(e == ")"){
                         while(!operate.empty() && operate.top() != "(")
@@ -110,20 +110,13 @@ class Solution {
                         ss<<e;
                         int x=1;
                         ss>>x;
-                        cout<<"x "<<x<<endl;
                         nums.push(x);
-                        while(!operate.empty() &&  operate.top()!= "(" ){
+                        while(!operate.empty() &&  operate.top()!= "(" )
                                 performOperate();
-                            }
-
                     }
-
                 }
-
-
-                cout<<"hello"<<endl;
                 while(!operate.empty())
-                        performOperate();
+                    performOperate();
                 int x = nums.top();
                 nums.pop();
                 return x;
@@ -136,27 +129,18 @@ class Solution {
                 nums.pop();
                 char ch = operate.top()[0];
                 operate.pop();
-//                char ch = e[0];
-                cout<<"x1="<<x1<<" x2= "<<x2<< " -> "<< x1<<ch<<x2<<endl;
                 switch(ch){
                         case '+': x1+=x2;break;
                         case '-': x1-=x2;break;
                         default:break;
                     }
-                cout<<"res x1 "<<x1<<endl;
                 nums.push(x1);
             }
-
 };
 
 int main(){
         Solution s;
-//        vector<string> tokens = {"2", "1", "+", "3", "*"};
-        string tokens = "13+ 11 -  1+10+( 12 +2 -3 )";
-        vector<string> vecs = s.getNumberOperator(tokens);
-        copy(vecs.begin(),vecs.end(),ostream_iterator<string>(cout,""));
-        cout<<endl;
-
+        string tokens = "1234";
         int res = s.calculate(tokens);
         cout<<"res-> "<<res<<endl;
         return 0;
