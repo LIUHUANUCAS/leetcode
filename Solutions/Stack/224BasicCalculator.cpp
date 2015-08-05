@@ -39,23 +39,14 @@ using namespace std;
 class Solution {
         private:
         stack<int> nums;
-        stack<char> operate;
+        stack<string> operate;
 
        public:
            string trim(string str){
                if(str.size() == 0)
                 return "";
-//                string::iterator sitb = str.begin();
-//                size_t i = 0;
-//                size_t j = str.size()-1;
-//                cout<<str<<endl;
-//                while(str[i] == ' ')
-//                    i++;
-//
-//                while(str[j] == ' ')
-//                    j--;
-//                string s = string(sitb+i,sitb+j+1);
                 stringstream sst;
+                string s="";
                 for(auto& e:str){
                     if(e!= ' ')
                         sst<<e;
@@ -71,23 +62,23 @@ class Solution {
                     return vecs;
                 string s = trim(str);
 
-
-                for(size_t i = 0;i<s.size();++i){
+                sst1+=s[0];
+                for(size_t i = 1;i<s.size();++i){
                     char e = s[i];
 
                     bool flag = (e == '+' || e == '-' || e == '(' || e == ')') ;
                     if(flag){
-
                         vecs.push_back(sst1);
                         sst1="";
-                        char tmp[3]="";
+                        char tmp[2]="";
                         tmp[0] = e;
+                        tmp[1]='\0';
                         vecs.push_back(string(tmp));
                     }
                     else
                         sst1+=e;
                 }
-
+                if(sst1 != "")
                 vecs.push_back(sst1);
 
                 return vecs;
@@ -98,43 +89,39 @@ class Solution {
                     return 0;
                 stringstream sst;
                 sst<<s[0];
-                for(size_t i = 1;i<s.size();++i){
-
-                    char e = s[i];
-//                    if()
-                    if(e == ' ')
-                        continue;
-//                    cout<<"===================e:"<<e<<endl;
-                    bool flag = (e == '+' || e == '-' || e == '(');
-                    if(e == ')'){
-
-                        while(operate.top() != '(')
+                vector<string> svec= getNumberOperator(s);
+                copy(svec.begin(),svec.end(),ostream_iterator<string>(cout,""));
+                for(auto&e:svec){
+                    cout<<"=============e="<<e<<endl;
+                    bool flag = (e == "+" || e == "-" || e == "(");
+                    if(e == ")"){
+                        while(!operate.empty() && operate.top() != "(")
                             performOperate();
-                        operate.pop();
-                        while(!operate.empty()&&operate.top() != '(')
-                            performOperate();
-//                        cout<<"pop ("<<endl;
-                    }else if(flag)
-                        operate.push(e);
-                    else{
+                        if(operate.top() == "("){
+                            operate.pop();
+                            while(!operate.empty() && operate.top() != "(")
+                                performOperate();
+                        }
+                    }
+                    else if( flag){
+                        operate.push(e);//operator push stack
+                    }else{//numbers
                         stringstream ss;
                         ss<<e;
-//                        cout<<"ss->"<<ss.str()<<endl;
                         int x=1;
                         ss>>x;
-//                        cout<<"x "<<x<<endl;
+                        cout<<"x "<<x<<endl;
                         nums.push(x);
-                        if(!operate.empty()&&operate.top() != '(')
-                            performOperate();
-//                        while(operate.top()!= '(' && !operate.empty()){
-//                                performOperate();
-//                            }
+                        while(!operate.empty() &&  operate.top()!= "(" ){
+                                performOperate();
+                            }
+
                     }
 
                 }
 
 
-//                cout<<"hello"<<endl;
+                cout<<"hello"<<endl;
                 while(!operate.empty())
                         performOperate();
                 int x = nums.top();
@@ -147,16 +134,16 @@ class Solution {
                 nums.pop();
                 int x1 = nums.top();
                 nums.pop();
-                char ch = operate.top();
+                char ch = operate.top()[0];
                 operate.pop();
 //                char ch = e[0];
-//                cout<<"x1="<<x1<<" x2= "<<x2<< " -> "<< x1<<ch<<x2<<endl;
+                cout<<"x1="<<x1<<" x2= "<<x2<< " -> "<< x1<<ch<<x2<<endl;
                 switch(ch){
                         case '+': x1+=x2;break;
                         case '-': x1-=x2;break;
                         default:break;
                     }
-//                cout<<"res x1 "<<x1<<endl;
+                cout<<"res x1 "<<x1<<endl;
                 nums.push(x1);
             }
 
@@ -165,22 +152,13 @@ class Solution {
 int main(){
         Solution s;
 //        vector<string> tokens = {"2", "1", "+", "3", "*"};
-        string tokens = "123+1 +1+(1 +2 -3 )";
+        string tokens = "13+ 11 -  1+10+( 12 +2 -3 )";
         vector<string> vecs = s.getNumberOperator(tokens);
         copy(vecs.begin(),vecs.end(),ostream_iterator<string>(cout,""));
         cout<<endl;
-//        stringstream sst;
-//        int x = 123;
-//        sst<<"321";
-//        sst>>x;
-//        int y =1;
-//        sst>>y;
-//        sst<<x;
-//        x = 100;
-//        sst<<x;
-//        string str;
-//        sst>>str;
-//        cout<<x<<" "<<y<<endl;
-//        sprintf(x,"%s",str.c_str());
+
+        int res = s.calculate(tokens);
+        cout<<"res-> "<<res<<endl;
+        return 0;
 
 }
