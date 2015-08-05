@@ -10,18 +10,6 @@ using namespace std;
 
 
 */
-#include<iostream>
-#include<vector>
-#include <cstdlib>
-#include<iterator>
-using namespace std;
-
-
-/**
-    doc
-
-
-*/
 
  struct TreeNode {
       int val;
@@ -85,41 +73,3 @@ int main(){
     return 0;
 
 }
-
-
-class Solution {
-    public:
-        /**your solution */
-
-};
-int main(){
-
-     vector<int> vals = {4,2,1,3,6,5,7};
-    TreeNode* root = createTree(vals);
-    Solution s;
-    /**your code*/
-
-    destoryTree(root);
-    return 0;
-
-}
-//
-//void insertTreeNode(int val){
-//     TreeNode* node = new TreeNode(val);
-//     TreeNode* r=;
-//     while(r->left && r->right){
-//        if(r->val == val)
-//                return ;
-//        if(val < r->val)
-//            r = r->left;
-//        else
-//            r = r->right;
-//     }
-//    if(r->left == NULL && val< r->val)
-//        r->left = node;
-//
-//
-//    if(r->right == NULL&&val > r->val)
-//        r->right = node;
-//    printTree(root);
-//}

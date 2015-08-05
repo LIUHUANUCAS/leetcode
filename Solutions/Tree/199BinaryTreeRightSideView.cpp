@@ -8,36 +8,29 @@ using namespace std;
 
 /**
     doc
-    Given a binary tree, return the level order traversal of its nodes' values.
-    (ie, from left to right, level by level).
+    Given a binary tree, imagine yourself standing on the right side of it,
+    return the values of the nodes you can see ordered from top to bottom.
 
     For example:
-    Given binary tree {3,9,20,#,#,15,7},
-
-        3
-       / \
-      9  20
-        /  \
-       15   7
-
-    return its level order traversal as:
-
-    [
-      [3],
-      [9,20],
-      [15,7]
-    ]
+    Given the following binary tree,
+       1            <---
+     /   \
+    2     3         <---
+     \     \
+      5     4       <---
+    You should return [1, 3, 4].
 
 
-    102BinaryTreeLevelOrderTraversal.cpp
+    199BinaryTreeRightSideView.cpp
 */
 
 /**
     Solutions:
        we can use two queue to store the first level node and the next level node.Meanwhile,we use
        two queue pointers,one of which is pointed to the first level queue,and the other to the next
-       level queue,when first level queue is empty ,which may demenstrate that one level nodes haved
-       been visited,so we will exchange them to perform another travesal the tree.
+       level queue,when first level queue is empty ,which may demonstrate that one level nodes have
+       been visited,besides,we will have a temporary variable to store the right most element on that
+       level ,last we will exchange them to perform another travesal the tree.
 */
 
 
@@ -48,14 +41,17 @@ struct TreeNode
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
+
+
+
 void printTree(TreeNode* root)
 {
     if(root != NULL)
     {
 
+    cout<<"->"<<root->val<<" ";
         printTree(root->left);
-
-        cout<<"->"<<root->val<<" ";
         printTree(root->right);
     }
 }
@@ -101,58 +97,64 @@ class Solution
 {
 public:
     /**your solution...*/
-    vector<vector<int>> levelOrder(TreeNode* root)
+
+    vector<int> rightSideView(TreeNode* root) {
+        return levelOrder(root);
+    }
+
+
+    vector<int> levelOrder(TreeNode* root)
     {
-        vector<vector<int>> level;
+        vector<int> rightmost;
         if(root == NULL)
-            return level;
+            return rightmost;
         queue<TreeNode*> que;
         queue<TreeNode*> que2;
         queue<TreeNode*> * p = &que,*q = &que2;
-
-
         p->push(root);
-        vector<int> vtmp;
+
         while(!p->empty())
         {
             TreeNode* node = p->front();
             p->pop();
-            vtmp.push_back(node->val);
             if(node->left != NULL)
                 q->push(node->left);
             if(node->right != NULL)
                 q->push(node->right);
+            while(!p->empty()){
+                TreeNode* next = p->front();
+                p->pop();
+                if(next->left != NULL)
+                    q->push(next->left);
+                if(next->right != NULL)
+                    q->push(next->right);
+                node = next;
+            }
+            rightmost.push_back(node->val);
             if(p->empty())
             {
                 queue<TreeNode * > * tmp = p;
                 p = q;
                 q =tmp;
-                level.push_back(vtmp);
-                vtmp.clear();
             }
         }
-        return level;
+        return rightmost;
     }
 
 };
 
 int main()
 {
-    vector<int> vals = {4,2,1,3,6,5,7,8,9};
+    vector<int> vals = {10,7,6,5,8,9};//,16,13
     TreeNode* root = createTree(vals);
     Solution s;
-    printTree(root);
     cout<<endl;
-    vector<vector<int>> level;
-    level = s.levelOrder(root);
-    for(auto&e : level)
-    {
-        copy(e.begin(),e.end(),ostream_iterator<int>(cout," "));
-        cout<<endl;
-    }
+    vector<int> level;
+    level = s.rightSideView(root);
+    copy(level.begin(),level.end(),ostream_iterator<int>(cout," "));
+
     /**your code...*/
     destoryTree(root);
-//    cout<<endl<<res<<endl;
     return 0;
 
 }
