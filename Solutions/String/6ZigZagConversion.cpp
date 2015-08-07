@@ -68,8 +68,8 @@ int main(){
 
     Solution s;
 //    string str = "LIUHUANPENGXINGJIULIUJIANFEIZHANGSANLISIWANGWUNIHAOZHEYANGSHIDUIDE";//PAYPALISHIRING
-    string str = "ABCCCC";//PAYPALISHIRING
-    str = s.convert(str,4);
+    string str = "PAYPALISHIRING";//PAYPALISHIRING
+    str = s.convert(str,7);
     cout<<str<<endl;
     cout<<"hello c++11"<<endl;
     return 0;
