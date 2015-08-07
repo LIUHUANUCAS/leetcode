@@ -44,15 +44,34 @@ using namespace std;
     Solutions:
         the first problem,UniquePaths,we can solve the problem with the method that the unique path will be
         the C(m+n-2,n-1),where C(x,y) donate the combination of x,y that is the combination number from x to
-        pick up y numbers.but we can solve the problem using dynamic programming method,main idea as follows:
+        pick up y numbers.Besides we can solve the problem using dynamic programming method,main idea as follows:
 
         we can create a two dimension array to store the number of path,where array[i][j] stands for the number
-        of path from start point(0,0) to the point (i,j),from the description of the question  we can draw conclusion
-        that the point (i,j) can arrive eithor from point(i-1,j) or point(i,j-1) so the
+        of path from start point(0,0) to the point (i,j),from the description of the question,we can draw conclusion
+        that the point (i,j) can arrive either from point(i-1,j) or point(i,j-1) so the number of path from point(0,0)
+        to point(i,j)  is equal to the number of path from point(0,0) to point(i,j-1) plus the number of path from
+        point(0,0) to point(i-1,j).that is array[i][j] = array[i][j-1] + array[i-1][j]. the figure following illustrates
+        the meaning of the equation.
+        array----------------------->j
+             |
+             |
+             |                 (i-1,j)
+             |                 '\|/
+             |       (i,j-1)-> (i,j)
+             |
+         i '\|/
+
+        Now, let's consider the problem of Unique Path II.The II problem has some obstacles on the grid,that is to say
+        the array of the obstacle location is 0.because we cannot arrive at the location.but the location (i,j) has the
+        same property discuss above,which is array[i][j] = array[i][j-1] + array[i-1][j].attention must be paid ,the
+        initial values of the array should be that the initial after the obstacle location should be zero when there is
+        a obstacle on the first row or first column.details can be referenced the following codes.
+
+
 
 */
 void printVector2D(vector<vector<int>>& dp){
-     for(auto& e : dp){
+    for(auto& e : dp){
                 copy(e.begin(),e.end(),ostream_iterator<int>(cout," "));
                 cout<<endl;
     }
