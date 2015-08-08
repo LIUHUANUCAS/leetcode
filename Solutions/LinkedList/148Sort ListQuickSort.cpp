@@ -7,11 +7,6 @@ using namespace std;
 
     148Sort List.cpp
 */
-/**
-    Solutions:
-        we can apply the quick sorting method to this problem.
-
-*/
 struct ListNode {
       int val;
       ListNode *next;
