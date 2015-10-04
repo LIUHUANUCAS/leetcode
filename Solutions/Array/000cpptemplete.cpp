@@ -15,6 +15,19 @@ using namespace std;
 
     000cpptemplate.cpp
 */
+void printMatrix(vector<vector<int>>& matrix){
+    for(auto&res:matrix){
+        copy(res.begin(),res.end(),ostream_iterator<int>(cout," "));
+        cout<<endl;
+    }
+    cout<<endl;
+}
+
+void printVector(vector<int>& res){
+        copy(res.begin(),res.end(),ostream_iterator<int>(cout," "));
+        cout<<endl;
+
+}
 
 class Solution {
 
@@ -24,10 +37,11 @@ class Solution {
 
 int main(){
         Solution s;
-        int array[]={1,2,3,4,5};
-        int a[] = {8,7,6};
-        vector<int> res (array,array+ sizeof(array)/sizeof(int));
-        copy(res.begin(),res.end(),ostream_iterator<int>(cout," "));
+        vector<int>nums = {1,2,3,4,5};
+
+        return 0;
+//        vector<int> res (array,array+ sizeof(array)/sizeof(int));
+//        copy(res.begin(),res.end(),ostream_iterator<int>(cout," "));
 
 
 }
