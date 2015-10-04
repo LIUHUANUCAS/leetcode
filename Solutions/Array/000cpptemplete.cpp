@@ -15,7 +15,13 @@ using namespace std;
 
     000cpptemplate.cpp
 */
-
+void printmatrix(vector<vector<int>> res ){
+    
+    for(auto& line : res){
+        copy(line.begin(),line.end(),ostream_iterator<int>(cout," "));
+        cout<<endl;
+    }
+}
 class Solution {
 
        public:
@@ -24,10 +30,9 @@ class Solution {
 
 int main(){
         Solution s;
-        int array[]={1,2,3,4,5};
-        int a[] = {8,7,6};
-        vector<int> res (array,array+ sizeof(array)/sizeof(int));
-        copy(res.begin(),res.end(),ostream_iterator<int>(cout," "));
-
+        vector<int> array ={1,2,3,4,5};
+        copy(array.begin(),array.end(),ostream_iterator<int>(cout," "));
+        
+        return 0;
 
 }
