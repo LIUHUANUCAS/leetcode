@@ -41,6 +41,13 @@ class Solution {
                 return 0;
             }
 
+            int mySqrt(int x) {
+                if(x <= 0 )
+                    return 0;
+                double t = log2(x)/2;
+                return int(pow(2,t));
+            }
+
 };
 
 int main(){
@@ -51,7 +58,7 @@ int main(){
 //            cout<<res<<endl;
 //
 //        }
-        cout<<s.mySqrt(2147395599)<<endl;
+        cout<<s.mySqrt1(4)<<endl;
         return 0;
 
 }

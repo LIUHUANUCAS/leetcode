@@ -24,6 +24,7 @@ using namespace std;
 */
 /**
     Solutions:
+    the assumation is that there is no duplicate exist in the array.
     from  rotation of the sorted array,we can draw the conclusion that the array will be the following format
     Ai,Ai+1,A... Amin,Ak,Ak+1,...An; there two pointers [begin,end] where the min value located.
     1.if A[begin] < A[end],so the A[begin,end] is sorted ,the min value is A[begin]
