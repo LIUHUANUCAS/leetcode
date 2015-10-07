@@ -34,7 +34,7 @@ using namespace std;
 */
 /**
     Solutions:
-    the assumation is that there is no duplicate exist in the array.
+    the assumation is that there may be duplicate exist in the array.
     from  rotation of the sorted array,we can draw the conclusion that the array will be the following format
     Ai,Ai+1,A... Amin,Ak,Ak+1,...An; there two pointers [begin,end] where the min value located.
     1.if A[begin] < A[end],so the A[begin,end] is sorted ,the min value is A[begin]
@@ -42,15 +42,20 @@ using namespace std;
     3.if end - begin == 1 the min value is minimum of A[begin],A[end]
     4.if A[mid] > A[end] the min value locates in A[mid+1,end]
     5 if A[mid] < A[end] the min value locates in A[begin,mid]
+    6.if A[mid] == A[end],the min value locates in A[begin,--end]
 
     1,2,3 are terminated conditions.
-    we should make a glance at the 4,5
+    we should make a glance at the 4,5,6
     first,the 4 stated that if A[mid] > A[end], min value in A[mid+1,end],the reason is that if A[mid] > A[end] and A[min] must less than
         A[mid] so the A[min] can not be equal A[mid],so the next range of min value is [mid+1,end]
     second,the 5 stated that if A[mid] < A[end],the min value locates in A[begin,mid].what will happen if A[begin,mid]?
         A[mid] < A[end],so the min value will not be in A[mid+1,end] because A[mid] < A[mid+1],that is to say the A[mid,end] has been sorted
         so the min value must in A[begin,mid].Carefully,A[mid] may be the minimum value of the array.
-
+    third,if A[mid] == A[end] and there may be duplicate exist in the array,so we can not decide where the min value locates in.
+        what we can do is to reduce the end range to search for the min value that is we make another search in A[begin,--end].
+        for example,assume that A= {3,3,1,3},where the min value is 1,but begin = 0 ,end = 3,and mid = (begin+end)/2 = 1
+        as we can see,A[mid] == A[end],if we let end = mid ,then the min value is missing.
+         
     finally ,we should pay attention to the partial sorted array that is we can make the decision from the result of A[mid] < A[end],
     while we can also decide the range of the min value from the result of A[begin] < A[mid],details can be seen at the code findMin2 with comments.
 */
