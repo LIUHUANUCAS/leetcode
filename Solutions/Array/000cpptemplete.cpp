@@ -15,7 +15,6 @@ using namespace std;
 
     000cpptemplate.cpp
 */
-<<<<<<< HEAD
 void printMatrix(vector<vector<int>>& matrix){
     for(auto&res:matrix){
         copy(res.begin(),res.end(),ostream_iterator<int>(cout," "));
@@ -30,7 +29,6 @@ void printVector(vector<int>& res){
 
 }
 
-=======
 void printmatrix(vector<vector<int>> res ){
     
     for(auto& line : res){
@@ -38,7 +36,6 @@ void printmatrix(vector<vector<int>> res ){
         cout<<endl;
     }
 }
->>>>>>> 5a32aa3401b50119f7710923fe1810ae5a72d16d
 class Solution {
 
        public:
@@ -47,7 +44,6 @@ class Solution {
 
 int main(){
         Solution s;
-<<<<<<< HEAD
         vector<int>nums = {1,2,3,4,5};
 
         return 0;
@@ -59,6 +55,5 @@ int main(){
         copy(array.begin(),array.end(),ostream_iterator<int>(cout," "));
         
         return 0;
->>>>>>> 5a32aa3401b50119f7710923fe1810ae5a72d16d
 
 }
