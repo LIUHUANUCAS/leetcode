@@ -1,11 +1,11 @@
 # leetcode
 Author:LIUHUAN at UCAS ICT <br>
-email:liu2012huan@126.com | liuhuan@ict.ac.cn<br>
-created on:2015-08-04 <br>
+Email:liu2012huan@126.com | liuhuan@ict.ac.cn<br>
+Created on:2015-08-04 <br>
 Abstract:Some leetcode solutions<br>
 
 Directory stated:<br>
-pdf Directory has the solutions about the leetcode ,which has been made in the latex format.
+pdf Directory has the solutions about the leetcode ,which has been made in the latex format.<br>
 Solutions Directory has the codes about some leetcode questions.the details are as follow:<br>
 
 Details:<br>
