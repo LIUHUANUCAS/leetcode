@@ -1,15 +1,15 @@
 # README.md
-#Leetcode
+# Leetcode
  - Author:LIUHUAN at UCAS ICT
  - Email:liu2012huan@126.com | liuhuan@ict.ac.cn
  - Created on:2015-08-04 
  - Abstract:Some leetcode solutions
 
-#Directory stated:
+# Directory stated:
  - pdf Directory has the solutions about the leetcode ,which has been made in the latex format.
  - Solutions Directory has the codes about some leetcode questions.the details are as following:
 
-#Details:
+# Details:
 
  1. Array Directory has all problem about array.
  2. Dynamic programming Directory has some codes for the Dynamic programming.
